@@ -13,4 +13,8 @@ class Article extends Model
         "title",
         "content"
     ] ;
+
+    public function subcategories(){
+        return $this->belongsToMany(SubCategory::class);
+    }
 }
