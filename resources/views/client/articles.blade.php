@@ -276,13 +276,13 @@
 
 									<div class="size-w-11">
 										<h6 class="p-b-4">
-											<a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+											<a href="{{url('/article',$tv3->id)}}" class="f1-s-5 cl3 hov-cl10 trans-03">
 											{{$tv3->title}}
 											</a>
 										</h6>
 
 										<span class="cl8 txt-center p-b-24">
-											<a href="{{url('/article',$tv3->id)}}" class="f1-s-6 cl8 hov-cl10 trans-03">
+											<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
 												@foreach ($allAuthorName as $tg)
 													@if ($tv3->author_id == $tg->id)
 														{{$tg->name}}

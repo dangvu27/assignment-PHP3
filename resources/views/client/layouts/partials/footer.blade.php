@@ -96,7 +96,7 @@ $topView3 = (new Article)->topView3();
                 <ul class="m-t--12">
                     @foreach ($categories as $key)
                     <li class="how-bor1 p-rl-5 p-tb-10">
-                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                        <a href="{{url('/category',$key->id)}}" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
                             {{$key->name}}
                         </a>
                     </li>
