@@ -81,7 +81,7 @@
 									{{$key+1}}
 								</div>
 
-								<a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
+								<a href="{{url('/article',$top5->id)}}" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
 									{{$top5->title}}
 								</a>
 							</li>
