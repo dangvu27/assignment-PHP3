@@ -2,19 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Author;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
     use HasFactory;
     protected $fillable = [
         "author_id",
+        "category_id",
         "title",
-        "content"
+        "content",
+        "img",
+        "views",
     ] ;
 
-    public function subcategories(){
-        return $this->belongsToMany(SubCategory::class);
+    public function author(){
+        return $this->belongsTo(Author::class);
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function topView3(){
+        return $this->orderByDesc("view")->limit(3)->get();
     }
 }

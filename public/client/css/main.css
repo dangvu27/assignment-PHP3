@@ -482,7 +482,9 @@ li.main-menu-active>a::before {
   -o-transform: scaleX(1);
   transform: scaleX(1);
 }
-
+.main-menu>a:hover {
+  color: #17b978;
+}
 .main-menu>li>a:hover:before {
   -webkit-transform: scaleX(1);
   -moz-transform: scaleX(1);

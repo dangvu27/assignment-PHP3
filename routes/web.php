@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function(){
-    return view('client.index');
-});
-Route::get('/category/{id}', function(){
-    return view('client.categories');
-});
+Route::get('/', [IndexController::class,'index']);
+
+Route::get('/category/{id}', [ArticleController::class,'category']);
+
+Route::get('/article/{id}', [ArticleController::class,'articleDetail']);
+
+Route::get('/search', [SearchController::class, 'search']);

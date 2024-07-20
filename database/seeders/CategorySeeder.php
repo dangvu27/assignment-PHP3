@@ -18,10 +18,6 @@ class CategorySeeder extends Seeder
             Category::create([
                 'name'=> $category,
             ]);
-        }
-        
-         
-        
-                
+        }                
     }
 }

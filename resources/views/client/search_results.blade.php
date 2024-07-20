@@ -1,14 +1,14 @@
 @extends('client.layouts.master')
 
 @section('title')
-Tin {{$title[0]}}
+ Tìm kiếm
 @endsection
 
 @section('content')
 <!-- Page heading -->
 <div class="container p-t-4 p-b-40">
 	<h2 class="f1-l-1 cl2">
-		{{$title[0]}}
+		Tìm kiếm 
 	</h2>
 </div>
 
@@ -18,7 +18,7 @@ Tin {{$title[0]}}
 		<div class="row justify-content-center">
 			<div class="col-md-10 col-lg-8 p-b-80">
 				<div class="row">
-					@foreach ($artile12 as $cate)
+					@foreach ($articlesTK as $cate)
 					<div class="col-sm-6 p-r-25 p-r-15-sr991">
 						<!-- Item latest -->
 						<div class="m-b-45">
@@ -81,7 +81,7 @@ Tin {{$title[0]}}
 									{{$key+1}}
 								</div>
 
-								<a href="{{url('/article',$top5->id)}}" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
+								<a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
 									{{$top5->title}}
 								</a>
 							</li>
