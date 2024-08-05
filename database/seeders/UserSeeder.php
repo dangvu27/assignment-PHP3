@@ -15,27 +15,19 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [ 'user', 'admin'];
-        foreach ($data as $key) {
-            Role::create(['name' => $key]);
-        }
-
-        for ($i = 0; $i < 10; $i++) {
-            User::create([
+        for ($i = 0; $i < 30; $i++) {
+            $user = User::create([
                 'email' => fake()->email(),
                 'password' => fake()->password(),
             ]);
 
             UserDetail::create([
-                'user_id' => $i+1,
+                'user_id' => $user->id,
                 'name' => fake()->name(),
                 'date-of-birth' => fake()->dateTime(),
                 'address' => fake()->address(),
                 'phone' => fake()->phoneNumber(),
             ]);
         }
-
-
-
     }
 }

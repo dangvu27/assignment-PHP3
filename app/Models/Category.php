@@ -12,6 +12,9 @@ class Category extends Model
         "name",
     ];
 
+    public function article(){
+        return $this->hasMany(Article::class);
+    }
     public function Category(){
         return $this->all();
     }

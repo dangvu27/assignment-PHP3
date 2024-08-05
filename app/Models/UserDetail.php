@@ -15,4 +15,9 @@ class UserDetail extends Model
         "address",
         "phone"
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -1,33 +1,26 @@
 <div class="topbar">
     <div class="content-topbar container h-100">
         <div class="left-topbar">
-            <span class="left-topbar-item flex-wr-s-c">
-                <span>
-                    HaNoi
-                </span>
+            @guest
+                <a href="{{ route('login') }}" class="left-topbar-item">
+                    Đăng nhập
+                </a>
+                <a href="{{ route('register') }}" class="left-topbar-item">
+                    Đăng ký
+                </a>
+            @else
+                <div class="left-topbar-item">
+                    <a href="{{route('admin.dashboard')}}">Chào, {{ Auth::user()->email }}</a>
+                </div>
 
-                <img class="m-b-1 m-rl-8" src="/client/images/icons/icon-night.png" alt="IMG">
-
-                <span>
-                    HI 58° LO 56°
-                </span>
-            </span>
-
-            <a href="#" class="left-topbar-item">
-                About
-            </a>
-
-            <a href="#" class="left-topbar-item">
-                Contact
-            </a>
-
-            <a href="#" class="left-topbar-item">
-                Sing up
-            </a>
-
-            <a href="#" class="left-topbar-item">
-                Log in
-            </a>
+                <a href="{{ route('logout') }}" class="left-topbar-item"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Đăng xuất
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
+                    @csrf
+                </form>
+            @endguest
         </div>
 
         <div class="right-topbar">

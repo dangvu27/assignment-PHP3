@@ -16,7 +16,7 @@
     <header>
         <!-- Header desktop -->
         <div class="container-menu-desktop">
-            <!-- @include('client.layouts.partials.header-topbar') -->
+            @include('client.layouts.partials.header-topbar')
 
             @include('client.layouts.partials.header-mobile')
 

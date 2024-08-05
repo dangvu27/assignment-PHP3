@@ -26,6 +26,11 @@ class Article extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
     public function topView3(){
         return $this->orderByDesc("view")->limit(3)->get();
     }
