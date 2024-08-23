@@ -11,7 +11,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         // Lấy từ khóa tìm kiếm từ request
-        $query = $request->input('search');
+        $query = $request['search'];
         
         // Thực hiện tìm kiếm trong cơ sở dữ liệu
         $articlesTK = Article::where('title', 'like', "%{$query}%")

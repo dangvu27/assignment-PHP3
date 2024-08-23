@@ -27,9 +27,9 @@ class AdminCategoryController extends Controller
             $request->validate([
                 'name' => 'required|string'
             ]);
-    
+
             $category = new Category([
-                'name' => $request->input('name')
+                'name' => $request['name']
             ]);
             $category->save();
             // dd($article);
@@ -49,14 +49,14 @@ class AdminCategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('admin.category-update',compact('category'));
+        return view('admin.category-update', compact('category'));
     }
     public function update(Request $request, Category $category)
     {
         $request->validate([
             'name' => 'required|string'
         ]);
-        $category->name = $request->input('name');
+        $category->name = $request['name'];
         $category->save();
 
         return redirect()->route('categories.index')->with('success', 'Bài viết đã được cập nhật thành công.');

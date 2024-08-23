@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    public function dashboard() {
+    public function dashboard()
+    {
         $memberCount = User::where('type', 'member')->count();
         $articleCount = Article::count();
         $commentCount = Comment::count();
@@ -21,14 +22,17 @@ class AdminController extends Controller
         $newMember = User::where('type', 'member')
             ->orderByDesc('id')
             ->limit(5)
-            ->with(['userDetail' => function ($query) {
-                $query->select('user_id', 'name', 'date-of-birth', 'phone', 'address');
-            }])->get(['id', 'email']);
+            ->with([
+                'userDetail' => function ($query) {
+                    $query->select('user_id', 'name', 'date-of-birth', 'phone', 'address');
+                }
+            ])->get(['id', 'email']);
 
         return view('admin.index', compact('memberCount', 'articleCount', 'commentCount', 'categoryCount', 'newMember'));
     }
 
-    public function index(){
+    public function index()
+    {
 
         $articles = Article::with(['author', 'category'])->withCount('comments')->orderByDesc('id')->get();
         // dd($articles);
@@ -54,20 +58,20 @@ class AdminController extends Controller
                 'options_author' => 'required',
                 'customValueAuthor' => 'nullable|string',
             ]);
-    
+
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('images', 'public');
                 $imageUrl = Storage::url($imagePath);
             } else {
                 $imagePath = null;
             }
-    
+
             $article = new Article();
-            $article->title = $request->input('title');
-            $article->content = $request->input('content');
+            $article->title = $request['title'];
+            $article->content = $request['content'];
             $article->img = $imageUrl;
-            $article->category_id = $request->input('options_category') === 'other' ? $this->createCategory($request->input('customValueCategory')) : $request->input('options_category');
-            $article->author_id = $request->input('options_author') === 'other' ? $this->createAuthor($request->input('customValueAuthor')) : $request->input('options_author');
+            $article->category_id = $request['options_category'] === 'other' ? $this->createCategory($request['customValueCategory']) : $request['options_category'];
+            $article->author_id = $request['options_author'] === 'other' ? $this->createAuthor($request['customValueAuthor']) : $request['options_author'];
             $article->save();
             // dd($article);
             return redirect()->route('articles.index')->with('success', 'Bài viết đã được thêm thành công!');
@@ -104,7 +108,7 @@ class AdminController extends Controller
     public function edit(Article $article)
     {
         $article->load(['author', 'category']);
-        return view('admin.update-articles',compact('article'));
+        return view('admin.update-articles', compact('article'));
     }
     public function update(Request $request, Article $article)
     {
@@ -113,8 +117,8 @@ class AdminController extends Controller
             'content' => 'required|string',
         ]);
 
-        $article->title = $request->input('title');
-        $article->content = $request->input('content');
+        $article->title = $request['title'];
+        $article->content = $request['content'];
         $article->save();
 
         return redirect()->route('articles.show', $article)->with('success', 'Bài viết đã được cập nhật thành công.');
